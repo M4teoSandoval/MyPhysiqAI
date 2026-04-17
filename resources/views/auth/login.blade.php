@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'MyPhysiqAl') }} - Iniciar sesión</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom Tailwind Config Override -->
     <script>
         tailwind.config = {
@@ -26,55 +27,75 @@
             }
         }
     </script>
-    
+
     <style>
         * {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
+
         .font-display {
             font-family: 'Bebas Neue', cursive;
             letter-spacing: 0.02em;
         }
+
         body {
             background-color: #010101;
-            background-image: radial-gradient(circle at 25% 40%, rgba(200, 240, 60, 0.03) 0%, rgba(0,0,0,0) 70%);
+            background-image: radial-gradient(circle at 25% 40%, rgba(200, 240, 60, 0.03) 0%, rgba(0, 0, 0, 0) 70%);
             overflow-y: auto !important;
             overflow-x: hidden;
         }
+
         .card-glass {
             background: rgba(10, 10, 12, 0.75);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(200, 240, 60, 0.2);
         }
+
         input {
             transition: all 0.2s ease;
         }
+
         input:focus {
             box-shadow: 0 0 0 2px rgba(200, 240, 60, 0.2);
         }
+
         html {
             overflow-y: auto !important;
             height: 100%;
         }
+
         body {
             min-height: 100%;
             height: auto;
         }
     </style>
 </head>
+
 <body class="relative py-12 px-4">
 
     <!-- Fondo con efecto muscular / neón -->
     <div class="fixed inset-0 bg-gradient-to-br from-black via-gray-950 to-black -z-10"></div>
     <div class="fixed top-0 right-0 w-96 h-96 bg-[#c8f03c]/5 rounded-full blur-3xl -z-10"></div>
     <div class="fixed bottom-0 left-0 w-80 h-80 bg-[#c8f03c]/5 rounded-full blur-3xl -z-10"></div>
-    
+
     <!-- Patrón de fondo -->
-    <div class="fixed inset-0 opacity-10 -z-10" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 800\"><path fill=\"none\" stroke=\"%23c8f03c\" stroke-width=\"1.5\" d=\"M300 150 L500 150 L500 350 L300 350 Z M150 400 L350 400 L350 600 L150 600 Z M500 500 L650 500 L650 700 L500 700 Z\"/><circle cx=\"400\" cy=\"400\" r=\"120\" stroke=\"%23c8f03c\" stroke-width=\"1\"/></svg>'); background-repeat: repeat; background-size: 180px;"></div>
+    <div class="fixed inset-0 opacity-10 -z-10" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\" http://www.w3.org/2000/svg\" viewBox=\"0 0 800 800\">
+        <path fill=\"none\" stroke=\"%23c8f03c\" stroke-width=\"1.5\" d=\"M300 150 L500 150 L500 350 L300 350 Z M150 400 L350 400 L350 600 L150 600 Z M500 500 L650 500 L650 700 L500 700 Z\" />
+        <circle cx=\"400\" cy=\"400\" r=\"120\" stroke=\"%23c8f03c\" stroke-width=\"1\" /></svg>'); background-repeat: repeat; background-size: 180px;">
+    </div>
+
+
 
     <!-- Contenedor principal -->
     <div class="relative z-10 max-w-md mx-auto w-full">
-        
+        <div class="flex items-center mb-6">
+            <a href="{{ url('/') }}"
+                class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#c8f03c] transition group">
+                <span class="transform group-hover:-translate-x-1 transition">←</span>
+                <span>Volver</span>
+            </a>
+        </div>
+
         <!-- Logo y branding -->
         <div class="text-center mb-8">
             <div class="flex items-center justify-center gap-2 mb-2">
@@ -98,9 +119,9 @@
 
                 <!-- Session Status -->
                 @if (session('status'))
-                    <div class="bg-green-500/10 border border-green-500/30 rounded-xl p-3 text-green-400 text-sm text-center">
-                        {{ session('status') }}
-                    </div>
+                <div class="bg-green-500/10 border border-green-500/30 rounded-xl p-3 text-green-400 text-sm text-center">
+                    {{ session('status') }}
+                </div>
                 @endif
 
                 <!-- Email Address -->
@@ -112,7 +133,7 @@
                         class="w-full px-4 py-3 bg-gray-900/80 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#c8f03c] focus:ring-1 focus:ring-[#c8f03c] transition"
                         placeholder="tu@ejemplo.com">
                     @error('email')
-                        <p class="text-red-400 text-xs mt-1">{{ $message }}</p>
+                    <p class="text-red-400 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -125,7 +146,7 @@
                         class="w-full px-4 py-3 bg-gray-900/80 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#c8f03c] focus:ring-1 focus:ring-[#c8f03c] transition"
                         placeholder="••••••••">
                     @error('password')
-                        <p class="text-red-400 text-xs mt-1">{{ $message }}</p>
+                    <p class="text-red-400 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -140,10 +161,10 @@
                     </label>
 
                     @if (Route::has('password.request'))
-                        <a href="{{ route('password.request') }}" 
-                           class="text-sm text-[#c8f03c] hover:text-[#b5dc32] transition font-medium">
-                            ¿Olvidaste tu contraseña?
-                        </a>
+                    <a href="{{ route('password.request') }}"
+                        class="text-sm text-[#c8f03c] hover:text-[#b5dc32] transition font-medium">
+                        ¿Olvidaste tu contraseña?
+                    </a>
                     @endif
                 </div>
 
@@ -159,12 +180,12 @@
 
                 <!-- Botones de acción -->
                 <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a href="{{ route('register') }}" 
-                       class="flex-1 text-center px-6 py-3 border border-gray-700 rounded-xl text-gray-300 hover:bg-white/5 hover:border-[#c8f03c]/50 transition font-medium">
+                    <a href="{{ route('register') }}"
+                        class="flex-1 text-center px-6 py-3 border border-gray-700 rounded-xl text-gray-300 hover:bg-white/5 hover:border-[#c8f03c]/50 transition font-medium">
                         ✨ Crear cuenta
                     </a>
-                    <button type="submit" 
-                            class="flex-1 bg-[#c8f03c] hover:bg-[#b5dc32] text-black font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-[#c8f03c]/20">
+                    <button type="submit"
+                        class="flex-1 bg-[#c8f03c] hover:bg-[#b5dc32] text-black font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-[#c8f03c]/20">
                         <span>⚡ Ingresar</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
@@ -178,8 +199,9 @@
         <div class="text-center mt-6 text-xs text-gray-500 pb-8">
             Al iniciar sesión aceptas nuestros <a href="#" class="text-[#c8f03c] hover:underline">Términos</a> y <a href="#" class="text-[#c8f03c] hover:underline">Política de privacidad</a>
         </div>
-        
+
     </div>
 
 </body>
+
 </html>
